@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sonic v1.0</title>
+        <link rel="stylesheet" href="style/start.css">
+        <link rel="stylesheet" href="style/style.css">
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div class ="instructions_1" id="instructions_1"> 
+            <div class="nav-btn x_exit" onclick="x_exit(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+            </div>
+            <div class ="instructions_2" id="instructions_2"> 
+                <h1>--Инструкции--</h1>
+                <hr>
+                <h2>--Управление--</h2><br>
+                A - Движение в левую сторону <br>
+                D - Движение в правую сторонк<br>
+                Пробел - Прыжек<br>
+                <hr>
+                <br>
+                <h2>--Описание--</h2><br>
+                Помоги Сонику дойти до финиша живым! <br>
+                некоторые буры покрыты ядом, за них может сниматься дополнительное хр в течении секунды.<br>
+                В общем удачи в прохождении... самое главное правило это НЕ ЛЕЗТЬ в код во время игры<br>
+                Не забудь ввести имя и выбрать персонажа)<br>
+                Надеюсь на то что ты будешь проходить игру честно и не нарушая главного правила!
+
+
+            </div>
+        </div>  
+        <div class ="rez" id="rez"> 
+            
+            <div class="tabl">
+                РЕЗУЛЬТАТЫ:<br>
+                <table>
+                    <tr><td>Имя</td><td>Время прохождения</td></tr>
+                    <tr><td id="name11"></td><td id="Time11"></td></tr>
+
+                </table>
+            </div>
+        
+        
+        
+        </div>
+        <div class ="variant" id="variant">
+            <div class="variant1">
+                <h1> Выбор персанажа </h1>
+                <div class="variant1-1 ">
+                    <div class="variant1-2 variant1-2-1" id="variant1-2-1" onclick="click1(this)">
+                    </div>
+                    <div class="variant1-2 variant1-2-2" id="variant1-2-2" onclick="click2(this)">
+                    </div>
+                </div>
+                <div class="variant1-3 ">
+                    <div class="nazad" id="nazad" onclick="nazad(this)"> 
+                    </div>
+                    <div class="name1" id="name1">
+                        <p><b>Ваше имя:</b><br>
+                            <input type="text" size="30" id="name2">
+                           </p></div>
+                    <div class="game" id="game" onclick="game_prov(this)"> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class ="headpiece" id="headpiece">
+            <div class ="instructions" id="instructions" onclick="Instructions(this)"> 
+            </div><!--Инструкции-->
+            <div class ="button_start" id="button_start" onclick="Start(this)"> 
+            </div><!--Начать игру--> 
+        </div>
+        <div class="VIDEO1" id="VIDEO1">
+            Нажмите Esc чтобы пропустить видео
+            <video class="VIDEO" id="VIDEO">
+                 </video>
+        </div>
+        <div class="wrapper" id="wrapper">
+            <canvas width="2040px" height="768px" class="canvas" id="canvas">Ваш браузер не поддерживает JavaScript и HTML5!</canvas>
+        </div>
+        <script src="js/game.js"> 
+        </script>
+        <script src="js/start.js"> 
+        </script>        
+    </body>
+</html>
