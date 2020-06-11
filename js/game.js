@@ -7,8 +7,10 @@ var jamp1=true;
 var fvideo=true;
 var timer1;
 var pflag=true;
+var record=0;
 var video= document.getElementById('VIDEO');
 video.src="video/1.mp4"
+let response
 function click1() {
     file1=1
     document.getElementById('variant1-2-1').style.borderColor = 'green';
@@ -23,7 +25,7 @@ var ss2=0;
 var ss3=0;
 function game_prov() {
     if ((document.getElementById('name2').value!="")){ 
-           document.getElementById('variant').style.display = 'none';
+          /* document.getElementById('variant').style.display = 'none';
            document.getElementById('VIDEO1').style.display = 'block'; 
            video.play()
            ss3=video.duration
@@ -44,8 +46,10 @@ function game_prov() {
                 game_prov1();  
             }
         })
-        //rez()
-        name = document.getElementById('name2').values
+        */
+        name =  document.getElementById('name2').value;
+       
+        rez();
     }else{
         alert("Введите имя");
     }
@@ -56,11 +60,22 @@ function game_prov1(){
     pers();
 }
 function rez(){
-    document.getElementById('wrapper').style.display = 'none';
+    //document.getElementById('wrapper').style.display = 'none';
+    
     document.getElementById('rez').style.display = 'block';
-    //document.getElementById('variant').style.display = 'none';
+    document.getElementById('variant').style.display = 'none';
     document.getElementById("name11").innerHTML =name;
     document.getElementById("Time11").innerHTML =String(mm)+":"+String(ss);
+    record=mm*60+ss;
+    fetch('http://api.can4eyc.ru/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(name)
+      })
+      .then(response => response.json())
+      .then(result => alert(JSON.stringify(result, null, 2)))
 }
 var canvas = document.getElementById("canvas"); //Получение холста из DOM
 var context = canvas.getContext("2d"); //Получение контекста — через него можно работать с холстом
