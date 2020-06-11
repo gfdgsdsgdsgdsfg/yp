@@ -67,7 +67,7 @@ function rez(){
     document.getElementById("name11").innerHTML =name;
     document.getElementById("Time11").innerHTML =String(mm)+":"+String(ss);
     record=mm*60+ss;
-    fetch('http://api.can4eyc.ru/', {
+    fetch('https://api.can4eyc.ru/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
