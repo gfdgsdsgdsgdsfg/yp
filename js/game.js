@@ -10,7 +10,9 @@ var pflag=true;
 var record=0;
 var video= document.getElementById('VIDEO');
 video.src="video/1.mp4"
-let response
+let response;
+let response1;
+var q1=[];
 function click1() {
     file1=1
     document.getElementById('variant1-2-1').style.borderColor = 'green';
@@ -25,7 +27,7 @@ var ss2=0;
 var ss3=0;
 function game_prov() {
     if ((document.getElementById('name2').value!="")){ 
-          /* document.getElementById('variant').style.display = 'none';
+           document.getElementById('variant').style.display = 'none';
            document.getElementById('VIDEO1').style.display = 'block'; 
            video.play()
            ss3=video.duration
@@ -46,10 +48,9 @@ function game_prov() {
                 game_prov1();  
             }
         })
-        */
+        
         name =  document.getElementById('name2').value;
        
-        rez();
     }else{
         alert("Введите имя");
     }
@@ -60,22 +61,61 @@ function game_prov1(){
     pers();
 }
 function rez(){
-    //document.getElementById('wrapper').style.display = 'none';
+    document.getElementById('wrapper').style.display = 'none';
     
     document.getElementById('rez').style.display = 'block';
-    document.getElementById('variant').style.display = 'none';
-    document.getElementById("name11").innerHTML =name;
-    document.getElementById("Time11").innerHTML =String(mm)+":"+String(ss);
     record=mm*60+ss;
-    fetch('https://api.can4eyc.ru/', {
-        method: 'POST',
+    
+
+    response =  fetch("http://api.can4eyc.ru/", {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
         headers: {
-          'Content-Type': 'application/json;charset=utf-8'
+          //'Content-Type': 'application/json'
+           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(name)
-      })
-      .then(response => response.json())
-      .then(result => alert(JSON.stringify(result, null, 2)))
+        body:`name=${name}&record=${record}` 
+      }).then(response => response.json()) // Ответ с сервера переводится в JSON
+      .then(res => console.log(res));
+
+      setTimeout(() => {   
+            response =  fetch("http://api.can4eyc.ru/", {
+                method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            }).then(response => response.json()) // Ответ с сервера переводится в JSON
+            .then(res => q1=res);
+        
+      setTimeout(() => {  
+            console.log(q1);
+            console.log(q1.records);
+            for(let i=0; i<q1.records;i++){
+                
+                let rootElem=document.querySelector(".rez2");
+                let newElement=document.createElement('div');
+                if(q1[i].name==name&&q1[i].record==record){
+                    newElement.className="rez2_2";
+                }else{
+                    newElement.className="rez2_1";
+                }
+                
+                newElement.innerText=q1[i].name;
+                rootElem.append(newElement)
+
+                 rootElem=document.querySelector(".rez2");
+                 newElement=document.createElement('div');
+                 if(q1[i].name==name&&q1[i].record==record){
+                    newElement.className="rez2_2";
+                }else{
+                    newElement.className="rez2_1";
+                }
+                newElement.innerText=q1[i].record;
+                
+                rootElem.append(newElement)
+            }
+        }, 500);
+    }, 500);
+        
+  
+       
+      
 }
 var canvas = document.getElementById("canvas"); //Получение холста из DOM
 var context = canvas.getContext("2d"); //Получение контекста — через него можно работать с холстом
